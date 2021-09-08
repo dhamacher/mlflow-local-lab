@@ -1,0 +1,7 @@
+FROM nginx
+# Remove default Nginx config
+RUN rm /etc/nginx/nginx.conf
+# Copy the modified Nginx conf
+COPY infrastructure/nginx/nginx.conf /etc/nginx
+# Copy proxy config
+COPY infrastructure/nginx/mlflow.conf /etc/nginx/sites-enabled/

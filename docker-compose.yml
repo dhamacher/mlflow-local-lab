@@ -1,0 +1,49 @@
+version: '3.3'
+
+services:
+    db:
+        image: "postgres"
+        container_name: "postgres"
+        expose:
+          - "5432"
+        ports:
+            - "5433:5432"
+        networks:
+          - backend
+        env_file:
+          - ./infrastructure/database.env 
+        volumes:
+          - ./volumes/database:/var/lib/postgresql/data/
+
+    web:
+        restart: always        
+        image: mlflow:latest
+        container_name: mlflow_server
+        expose:
+            - "5000"
+        networks:
+            - frontend
+            - backend
+        volumes:
+          - ./volumes/mlflow-artifacts:/mlflow/artifacts        
+        command: mlflow server --backend-store-uri postgresql+psycopg2://mlflow_admin:admin_1234@db/mlflow  --default-artifact-root file:/mlflow/artifacts --host="0.0.0.0"
+
+    nginx:
+        restart: always        
+        image: nginx_proxy
+        container_name: mlflow_nginx
+        ports:
+            - "80:80"
+        networks:
+            - frontend
+        depends_on:
+            - web
+
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge
+
+volumes:
+    dbdata:
