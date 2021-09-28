@@ -3,6 +3,15 @@
 ## Purpose
 Provide a simple approach to deploy MLFlow locally without installing many soiftware packages.
 
+**MLFlow Start Page**
+<img width="954" alt="2021-09-28 03_01_22-" src="https://user-images.githubusercontent.com/2443514/135057274-b2c02211-6a56-4788-8bcd-cffed15d54b1.png">
+
+**Docker Deployment**  
+<img width="285" alt="2021-09-28 03_02_52-App instance" src="https://user-images.githubusercontent.com/2443514/135057464-fbce370f-44d8-4c31-9f0d-ea34a699aecb.png">
+
+
+
+
 ## Prerequisites
 For the setup to work you must have the following componenent installed:
 * [Python +3](https://www.python.org/downloads/)
